@@ -185,3 +185,10 @@ function ansibleGalaxy {
 
     wsl -d $distr -u $user -e ansible-galaxy $type $action $roleName $f $instal_params[0] $instal_params[1] $instal_params[2] $instal_params[3]
 } 
+
+ 
+ function UpdateAnsibleRoles {
+ 
+    Remove-Item -Recurse -Force  ./roles; if($?) {ansible-galaxy -action install} else {write-host -f Magenta "Roles dirictiry is not exist, use ansible-galaxy -action install to populate"}
+
+ }
