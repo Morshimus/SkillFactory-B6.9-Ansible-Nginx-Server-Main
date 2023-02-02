@@ -1,4 +1,24 @@
-# lint
+# SkillFactory-B6.9-Ansible-Nginx-Server-Main
+## Roles repo - https://github.com/Morshimus/SkillFactory-B6.9-Ansible-Nginx-Server-Roles
+## Задание
+* [x] - :one: ~~Создайте Ansible-роль, настраивающую кэширующий DNS-сервер dnsmasq. Примените ее.~~
+ > Для данного задания был создан дополнительный репозиторий с ролями, где происходило тестирование ролей с помощью molecule.
+ ![image](https://db3pap003files.storage.live.com/y4mo2umDfn5Bo35o6_i33SOtY11ft8nuJmKH5asCAtdDBVFeywf57wEDYXIziulGbtjauo5mElm1v-D85NVVKfH8Hq6Y7B9Dndw2JIb7t4lB5fTwlHAW4NW6kq57LFdbBLtY1ey_tanlQoZIuJKsF62QB9tcaJkJUQ85mh2CxislmcbLDzieqUkiB0yTfqR2zg_hycv6774j4_bImMcKRQgBg/Ansible_Role_Project.jpg?psid=1&width=1277&height=612)
+
+$${\color{magenta}molecule \space ouptut:}$$
+
+![image](https://db3pap003files.storage.live.com/y4mPDPDN3L4KpuOC8OwzrF4-VR0wu50MM8SBfLrC3b5Wlxq8ni6AI6Zka37xBKOPBoc6kTosTB7xrGelbxDfxB_4UlllQiMv5YogM-FZNON1g5KkS_0sgivc0yhG9RgFAqM8D6I-llNfF-u4W4x0_UFRfHkpWxinhONJ6ov8hNWyfiIHCppjVY3CUb-3LOfGLNo3vXpI1uXxBV3wNz8c5RR2Q/Molecule_dnsmasq.jpg?psid=1&width=1326&height=582)
+ 
+* [x] - :two: ~~Напишите Ansible-playbook, создающий группу пользователей superusers, куда входят пользователи user2 и user3, и которая, выполнив sudo -i, сможет повысить свои полномочия и стать root-пользователем. Можете использовать модуль lineinfile. У него есть параметр validate, позволяющий проверять сделанные изменения в файле. В документации есть пример валидации sudoers-файла.~~
+ > Задание было немного переработано - вместо плейбука была написана роль user_mgmt
+  $${\color{magenta}molecule \space ouptut:}$$
+ 
+* [x] - :three: ~~Самостоятельно напишите Ansible-роль, настраивающую связку nginx+php-fpm и выдающую при обращении к главной странице веб-сервера информацию о php (содержимое index.php — <?php phpinfo();?>).~~
+
+* [x] - :four: ~~Дополните роль из п.3: пусть DocumentRoot будет в директории /opt/nginx/ansible. Используйте handler для перечитывания конфигурации nginx.~~
+  > Сделано в рамках роли nginx. Handler перезаупускает службу когда значение из темплейтов j2 обновлено.
+  
+    $${\color{magenta}molecule \space ouptut:}$$
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
