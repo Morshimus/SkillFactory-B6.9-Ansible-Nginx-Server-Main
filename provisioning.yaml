@@ -1,0 +1,8 @@
+---
+- hosts: nodes
+  gather_facts: yes
+  become: yes
+  roles:
+    - dnsmasq
+    - nginx_php
+
