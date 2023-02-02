@@ -112,11 +112,9 @@ function ansiblePlaybook {
         [Parameter(Mandatory=$False)]
         [String]$user = "morsh92",        
         [Parameter(Mandatory=$False)]
-        [String]$server = "lemp",
-        [Parameter(Mandatory=$False)]
         [String]$invFile = "./yandex_cloud.ini",
         [Parameter(Mandatory=$False)]
-        [String]$privateKey = "~/.ssh/morsh_bastion_SSH",
+        [String]$privateKey = "~/.ssh/morsh_server_SSH",
         [Parameter(Mandatory=$False)]
         [String]$Playbook = "./provisioning.yaml",
         [Parameter(Mandatory=$False,Position=0)]
@@ -129,7 +127,7 @@ function ansiblePlaybook {
         [switch]$secret
     )
 
-    if($secret){$params='-e';$secrets = "'@secrets'"}
+    if($secret){$params='-e';$secrets = "@secrets"}
 
     if($tagInit){$params='--tags';$tag = "init postfix"}elseif($tagDrop){$param='--tags';$tag = "drop postfix"}
 
@@ -160,52 +158,30 @@ function ansibleVault {
 } 
 
 
-
-function molecule {
+Set-Alias ansible-galaxy ansibleGalaxy
+function ansibleGalaxy {
     param (
         [Parameter(Mandatory=$False)]
-        [string]$role = "nginx",
+        [string]$distr = "Ubuntu-20.04",
         [Parameter(Mandatory=$False)]
-        [String]$org = "morsh92",
-        [switch]$verify
+        [String]$user = "morsh92",
+        [Parameter(Mandatory=$False,Position=0)]
+        [String]$type = 'role',
+        [Parameter(Mandatory=$False,Position=0)]
+        [String]$action = 'init',
+        [Parameter(Mandatory=$False,Position=0)]
+        [String]$roleName = 'sample',
+        [Parameter(Mandatory=$False,Position=0)]
+        [switch]$force,
+        [Parameter(Mandatory=$False,Position=0)]
+        [string]$roleFile = './requirements.yml',
+        [Parameter(Mandatory=$False,Position=0)]
+        [string]$rolesPath = './roles'
 
     )
     
-    $path = (Get-Location).path -replace "\\", "/"
+    if($action -like "install"){$roleName ="";$f = "";$instal_params=@("--role-file", $roleFile, "--roles-path", $rolesPath)}
+    if($force){$f = '--force'}
 
-    docker run -d --name=molecule-$role `
-    -v  $path/molecule:/opt/molecule `
-    --privileged `
-    morsh92/molecule:dind
-    
-    docker exec -ti molecule-$role  /bin/sh -c  "molecule init role $org.$role -d docker"
-
-    Copy-Item -Recurse -Force  $path/$role/tasks/* $path/molecule/$role/tasks
-
-    Copy-Item -Recurse -Force  $path/$role/handlers/* $path/molecule/$role/handlers
-
-    Copy-Item -Recurse -Force  $path/$role/templates/* $path/molecule/$role/templates
-
-    Copy-Item -Recurse -Force  $path/$role/templates/* $path/molecule/$role/templates
-
-    Copy-Item -Recurse -Force  $path/$role/tests/* $path/molecule/$role/tests
-
-    Copy-Item -Recurse -Force  $path/$role/vars/* $path/molecule/$role/vars
-
-    docker exec -ti molecule-$role  /bin/sh -c  "cd ./$role && molecule create"
-
-    docker exec -ti molecule-$role  /bin/sh -c  "cd ./$role && molecule converge"
-
-    if($verify){
-    mkdir -p $path/molecule/$role/roles
-
-    Copy-Item -Recurse -Force $path/ansible_tests/* $path/molecule/$role/roles
-    
-    docker exec -ti molecule-$role  /bin/sh -c  "cd ./$role && molecule verify"
-     
-    }
-
-    docker rm molecule-$role -f
-
-    Remove-Item -Recurse -Force $path/molecule/$role
+    wsl -d $distr -u $user -e ansible-galaxy $type $action $roleName $f $instal_params[0] $instal_params[1] $instal_params[2] $instal_params[3]
 } 

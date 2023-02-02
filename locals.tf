@@ -3,7 +3,7 @@ locals {
   ansible_template = templatefile(
     "${path.module}/templates/ansible_inventory_template.tpl",
     {
-      user     = "cloud-user",
+      user     = "centos",
       ip       = module.morsh_instance_ya_1.external_ip_address_morsh_bastion,
       hostname = module.morsh_instance_ya_1.hostname_morsh_bastion
 

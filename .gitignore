@@ -7,11 +7,14 @@
 *.lock.hcl
 key.json
 plantf
-morsh_bastion_SSH
-morsh_bastion_SSH.pub
+morsh_server_SSH
+morsh_server_SSH.pub
+adm-user_SSH
+adm-user_SSH.pub
 yandex_cloud.ini
 **/molecule/*
-**/ansible_roles/*
+**/roles/*
+
 
 # Crash log files
 crash.log
