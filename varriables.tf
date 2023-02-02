@@ -83,3 +83,9 @@ variable "source_image" {
   default     = "centos-stream8"
   description = "OS family of image"
 }
+
+variable "useros" {
+  type = string
+  default = "cloud-user"
+  description = "OS native default user"
+}
