@@ -5,10 +5,10 @@
 
       
   roles:
-    - role: roles/dnsmasq
+    - role: common/dnsmasq
       vars:
         domain: "polar.grp"
-    - role: roles/users_mgmt
+    - role: common/users_mgmt
       vars:
         admin_group: 'adm'
         server_admin_list:
