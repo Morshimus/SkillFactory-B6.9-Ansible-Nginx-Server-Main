@@ -7,3 +7,8 @@ output "external_ip_address_vm_1" {
 }
 
 
+
+output "hostname_vm_1" {
+  value = module.morsh_instance_ya_1.hostname_morsh_bastion
+}
+

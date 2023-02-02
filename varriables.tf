@@ -80,6 +80,6 @@ variable "os_disk_size" {
 
 variable "source_image" {
   type        = string
-  default     = "centos-7"
+  default     = "centos-stream8"
   description = "OS family of image"
 }

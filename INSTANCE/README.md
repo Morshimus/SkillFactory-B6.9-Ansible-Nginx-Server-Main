@@ -34,9 +34,10 @@ No modules.
 | <a name="input_folder_id"></a> [folder\_id](#input\_folder\_id) | n/a | `string` | `"b1g16ac5if9cnssnhfip"` | no |
 | <a name="input_os_disk_size"></a> [os\_disk\_size](#input\_os\_disk\_size) | n/a | `string` | `"5"` | no |
 | <a name="input_os_disk_type"></a> [os\_disk\_type](#input\_os\_disk\_type) | n/a | `string` | `"network-ssd"` | no |
+| <a name="input_prefix"></a> [prefix](#input\_prefix) | n/a | `string` | `"server"` | no |
 | <a name="input_service_account_key"></a> [service\_account\_key](#input\_service\_account\_key) | n/a | `string` | `"./key.json"` | no |
 | <a name="input_source_image"></a> [source\_image](#input\_source\_image) | n/a | `string` | `"lamp"` | no |
-| <a name="input_vm_name_bastion"></a> [vm\_name\_bastion](#input\_vm\_name\_bastion) | n/a | `string` | `"morsh_bastion"` | no |
+| <a name="input_vm_name_server"></a> [vm\_name\_server](#input\_vm\_name\_server) | n/a | `string` | `"morsh_server"` | no |
 | <a name="input_vm_ram_qty"></a> [vm\_ram\_qty](#input\_vm\_ram\_qty) | n/a | `string` | `"2"` | no |
 | <a name="input_vm_vcpu_qty"></a> [vm\_vcpu\_qty](#input\_vm\_vcpu\_qty) | n/a | `string` | `"2"` | no |
 | <a name="input_vm_vcpu_type"></a> [vm\_vcpu\_type](#input\_vm\_vcpu\_type) | n/a | `string` | `"standard-v2"` | no |
@@ -47,5 +48,6 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_external_ip_address_morsh_bastion"></a> [external\_ip\_address\_morsh\_bastion](#output\_external\_ip\_address\_morsh\_bastion) | n/a |
+| <a name="output_hostname_morsh_bastion"></a> [hostname\_morsh\_bastion](#output\_hostname\_morsh\_bastion) | n/a |
 | <a name="output_internal_ip_address_morsh_bastion"></a> [internal\_ip\_address\_morsh\_bastion](#output\_internal\_ip\_address\_morsh\_bastion) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

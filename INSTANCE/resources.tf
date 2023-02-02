@@ -1,6 +1,6 @@
 resource "yandex_compute_instance" "morsh_bastion" {
   platform_id               = var.vm_vcpu_type
-  name                      = "morsh-bastion-${var.source_image}"
+  name                      = "morsh-${var.prefix}-${var.source_image}"
   allow_stopping_for_update = true
   labels                    = local.labels
 
@@ -33,7 +33,7 @@ resource "yandex_compute_instance" "morsh_bastion" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("./${var.vm_name_bastion}_SSH.pub")}"
+    ssh-keys = "ubuntu:${file("./${var.vm_name_server}_SSH.pub")}"
   }
 
   network_interface {

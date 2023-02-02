@@ -23,11 +23,15 @@ variable "folder_id" {
 
 
 
-variable "vm_name_bastion" {
+variable "vm_name_server" {
   type    = string
-  default = "morsh_bastion"
+  default = "morsh_server"
 }
 
+variable "prefix" {
+  type    = string
+  default = "server"
+}
 
 variable "vm_vcpu_type" {
   type    = string
