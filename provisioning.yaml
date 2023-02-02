@@ -8,6 +8,7 @@
     - role: common/dnsmasq
       vars:
         domain: "polar.grp"
+
     - role: common/users_mgmt
       vars:
         admin_group: 'adm'
@@ -30,5 +31,10 @@
                - "{{  user3_ssh_pub_old }}"
            shell: "/bin/bash"   
            state: present   
-#    - nginx_php
+
+    - role: common/nginx_php
+      vars:
+        webroot: "/opt/nginx/ansible"
+        port: "8080"
+        server_name: "morsh_nginx"
 
