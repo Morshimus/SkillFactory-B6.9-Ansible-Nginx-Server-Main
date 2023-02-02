@@ -85,7 +85,7 @@ variable "source_image" {
 }
 
 variable "useros" {
-  type = string
-  default = "cloud-user"
+  type        = string
+  default     = "cloud-user"
   description = "OS native default user"
 }
